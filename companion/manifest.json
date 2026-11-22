@@ -8,7 +8,6 @@
   "manufacturer": "Large Display Solutions",
   "products": ["LDSscoreboard v3.24"],
   "keywords": ["scoreboard", "sports", "lds", "largedisplaysolutions"],
-  "version": "0.9.3",
   "version": "0.9.22",
   "license": "MIT",
   "repository": "git+https://github.com/bitfocus/companion-module-largedisplaysolutions-ldsscoreboard.git",
