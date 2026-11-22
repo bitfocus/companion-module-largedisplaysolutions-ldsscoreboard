@@ -1,11 +1,50 @@
 {
   "name": "companion-module-largedisplaysolutions-ldsscoreboard",
-  "version": "0.9.1",
-  "description": "Bitfocus Companion module for LDSscoreboard v3.24 (Build 3) - Large Display Solutions",
+  "version": "0.9.3",
+  "description": "Bitfocus Companion module for LDSscoreboard v3.26.1 - Large Display Solutions",
   "main": "dist/main.js",
   "type": "module",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bitfocus/companion-module-largedisplaysolutions-ldsscoreboard.git"
+  },
+  "engines": {
+    "node": "^22.20",
+    "yarn": "^4"
+  },
+  "packageManager": "yarn@4.12.0",
+  "prettier": "@companion-module/tools/.prettierrc.json",
+  "scripts": {
+    "postinstall": "husky",
+    "format": "prettier -w .",
+    "package": "yarn build && companion-module-build",
+    "build": "rimraf dist && yarn build:main",
+    "build:main": "tsc -p tsconfig.build.json",
+    "dev": "tsc -p tsconfig.build.json --watch",
+    "lint:raw": "eslint",
+    "lint": "yarn lint:raw ."
+  },
+  "lint-staged": {
+    "*.{css,json,md,scss}": [
+      "prettier --write"
+    ],
+    "*.{ts,tsx,js,jsx}": [
+      "yarn lint:raw --fix"
+    ]
+  },
   "dependencies": {
-    "@companion-module/base": "~1.11.0"
+    "@companion-module/base": "~1.14.0"
+  },
+  "devDependencies": {
+    "@companion-module/tools": "^2.6.1",
+    "@types/node": "^22.19.3",
+    "eslint": "^9.39.2",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
+    "prettier": "^3.7.4",
+    "rimraf": "^6.1.2",
+    "typescript": "~5.9.3",
+    "typescript-eslint": "^8.51.0"
   }
 }

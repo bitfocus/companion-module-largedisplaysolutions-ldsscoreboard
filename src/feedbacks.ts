@@ -1,25 +1,33 @@
-export function getFeedbacks() {
-    return {
-        counter_above: {
-            type: 'boolean',
-            name: 'Compteur > valeur',
-            description: 'True si un compteur est supérieur à la valeur',
-            options: [
-                { type: 'textinput', id: 'name', label: 'Nom du compteur', default: 'score_local' },
-                { type: 'number', id: 'value', label: 'Seuil', default: 0, min: 0, max: 9999 },
-            ],
-            defaultStyle: { bgcolor: 0xff0000, color: 0xffffff },
-            callback: async (feedback) => {
-                return false;
-            },
-        },
-        timer_running: {
-            type: 'boolean',
-            name: 'Timer en cours',
-            description: 'Indication visuelle (basée sur dernière action)',
-            options: [{ type: 'textinput', id: 'name', label: 'Nom du timer', default: 'main' }],
-            defaultStyle: { bgcolor: 0x00ff00, color: 0x000000 },
-            callback: async () => false,
-        },
-    };
+// @ts-nocheck
+export function getFeedbacks(self: any) {
+	return {
+		counter_above: {
+			type: 'boolean',
+			name: 'Counter > value',
+			description: 'True when the selected counter is above the given value',
+			defaultStyle: { bgcolor: 0x00ff00, color: 0x000000 },
+			options: [
+				{ type: 'textinput', id: 'name', label: 'Counter name', default: '' },
+				{ type: 'number', id: 'value', label: 'Value', default: 0, min: 0, max: 9999 },
+			],
+			callback: (feedback: any) => {
+				const name = feedback.options.name
+				const threshold = feedback.options.value
+				const current = parseInt(String(self.getVariableValue?.(`counter_${name}`) || '0'), 10)
+				return current > threshold
+			},
+		},
+		timer_running: {
+			type: 'boolean',
+			name: 'Timer running',
+			description: 'True when the selected timer is running (not 00:00)',
+			defaultStyle: { bgcolor: 0x00ff00, color: 0x000000 },
+			options: [{ type: 'textinput', id: 'name', label: 'Timer name', default: '' }],
+			callback: (feedback: any) => {
+				const name = feedback.options.name
+				const time = self.getVariableValue?.(`timer_${name}`) || '00:00'
+				return time !== '00:00' && time !== '00:00:00' && time !== ''
+			},
+		},
+	}
 }
