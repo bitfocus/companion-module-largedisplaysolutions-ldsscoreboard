@@ -1,6 +1,7 @@
 {
   "name": "companion-module-largedisplaysolutions-ldsscoreboard",
   "version": "0.9.3",
+  "version": "0.9.22",
   "description": "Bitfocus Companion module for LDSscoreboard v3.26.1 - Large Display Solutions",
   "main": "dist/main.js",
   "type": "module",
